@@ -1,21 +1,18 @@
-import { useState } from 'react'
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import './App.css'
+import { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Dashboard from "./components/Dashboard/Dashboard";
+import "./App.css";
 
 function App() {
- return(
-  <>
-  <Header/>
-  <main>
-    <h2>
-      Welcome to My Personal Finance Tracker Page
-    </h2>
-  </main>
-  <Footer/>
+  return (
+    <>
+      <p> </p>
 
-</>
-   );
+      <Dashboard />
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;
