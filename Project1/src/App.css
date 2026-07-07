@@ -21,7 +21,7 @@ h1,h4{
 .transaction{
     color:black
 }
-.transaction {
+/*.transaction {
   padding-top: 5%;
   justify-self: center;
   border-radius: 10px;

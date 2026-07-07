@@ -1,12 +1,13 @@
+import HomePage from "./HomePage";
 function Header() {
   return (
     <header className="header">
       <h1> DashBoard</h1>
       <h4>Welcome Back - Here is your Financial Overview</h4>
-      <nav>
+      <navbar>
         <ul>
           <li>
-            <a href="#home">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
             {" "}
@@ -17,7 +18,7 @@ function Header() {
             <a href="/contact">Contact</a>
           </li>
         </ul>
-      </nav>
+      </navbar>
     </header>
   );
 }
