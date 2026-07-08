@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Sidebar from "./components/Transaction/Sidebar";
 import Transactions from "./components/Transaction/Transactions";
+//import TransactionList from "./components/Transaction/TransactionList";
+//import TransactionItem from "./components/Transaction/TransactionItem";
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
   return (
     <div>
     <Sidebar/>
+    
+    
     <Transactions transactions={transactions}/>
   </div>
   )

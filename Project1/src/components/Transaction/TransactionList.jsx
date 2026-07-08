@@ -1,5 +1,6 @@
 import React from 'react';
 import TransactionItem from './TransactionItem';
+
 function TransactionList({transactions}){
     return(
         <div className="transaction-list">
@@ -11,12 +12,13 @@ function TransactionList({transactions}){
                         <th> CATEGORY</th>
                         <th> TYPE</th>
                         <th> AMOUNT</th>
-                        <th> ACTION</th>
-                        
+                                             
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.map(transaction =>(<TransactionItem key={transaction.id}transaction={transaction}/>))}
+                    {transactions.map(transaction => (
+                        <TransactionItem key={transaction.id} transaction={transaction} />
+                    ))}
                 </tbody>
             </table>
         </div>
