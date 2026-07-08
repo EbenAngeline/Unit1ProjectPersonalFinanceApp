@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import BudgetManagement from './component/BudgetManagement';
 import './App.css'
 
 function App() {
  return(
-<p>"Hello, LaunchCode"</p>
+<BudgetManagement/>
    );
 }
 
