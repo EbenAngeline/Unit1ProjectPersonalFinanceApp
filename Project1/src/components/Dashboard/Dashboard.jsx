@@ -1,4 +1,4 @@
-import "./dashboard.css";
+import "./Dashboard.css";
 
 function Dashboard() {
   const transactions = [
