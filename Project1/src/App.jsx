@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import HomePage from "./components/HomePage";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import Header from "./components/Common/Header";
+import HomePage from "./components/Home/Home";
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Transactions from "./components/Transaction/Transactions";
-import AddTransaction from "./components/AddDeleteTransaction/AddTransaction";
+import AddTransaction from "./components/Transaction/AddTransaction/AddTransaction";
 
 function App() {
   const [transactions, setTransactions] = useState(() => {

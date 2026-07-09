@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import MockData from "./MockData";
-import categories from "./MockData";
+import MockData from "../MockData";
+import categories from "../MockData";
 const BudgetCategory = ({ categoryName, limit, spent, remaining, status }) => {
   const isOverBudget = status === "OverBudget";
   const isUnderBudget = status === "Remaining";
