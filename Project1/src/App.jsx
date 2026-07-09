@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import BudgetManagement from "./component/BudgetManagement";
+import "./App.css";
 
 function App() {
- return(
-<p>"Hello, LaunchCode"</p>
-   );
+  return <BudgetManagement />;
 }
 
-export default App
+export default App;
