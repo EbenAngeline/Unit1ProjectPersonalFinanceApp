@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MockData from './MockData';
+import MockData from "./MockData";
 import categories from "./MockData";
 const BudgetCategory = ({ categoryName, limit, spent, remaining, status }) => {
   const isOverBudget = status === "OverBudget";
@@ -59,8 +59,8 @@ const BudgetManagement = () => {
   const totalSpent = 1540.15;
   const budgetPeriod = "Monthly";
   const overallProgress = (totalSpent / totalBudget) * 100;
-  const mock_categories = categories
- 
+  const mock_categories = categories;
+
   return (
     <div className="budget">
       <div className="budget-summary">

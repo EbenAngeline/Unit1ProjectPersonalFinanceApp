@@ -1,24 +1,29 @@
-import HomePage from "./HomePage";
+import { NavLink } from "react-router-dom";
+
 function Header() {
+  const links = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/transactions", label: "Transactions" },
+  ];
+
   return (
     <header className="header">
-      <h1> DashBoard</h1>
+      <h1>Dashboard</h1>
       <h4>Welcome Back - Here is your Financial Overview</h4>
-      <navbar>
+      <nav>
         <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            {" "}
-            <a href="/HomePage">About</a>
-          </li>
-          <li>
-            {" "}
-            <a href="/contact">Contact</a>
-          </li>
+          {links.map((link) => (
+            <li key={link.to}>
+              <NavLink to={link.to} end={link.to === "/"}>
+                {link.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
-      </navbar>
+      </nav>
     </header>
   );
 }

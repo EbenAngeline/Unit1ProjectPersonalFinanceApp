@@ -37,28 +37,28 @@ function Dashboard() {
 
       {/* This div must be below the dashboard div otherswise it will try to to put both of them on the same row */}
       <div className="transaction-card">
-          <h2> Transactions</h2>
-          <table className="description">
-            <thead>
-              <tr>
-                <th colSpan={"2"}>Description</th>
-                <th colSpan={"2"}>Type</th>
-                <th colSpan={"2"}> Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <div class="transactionTable">
-                {transactions.map((item) => (
-                  <tr key={item.id}>
-                    <td colSpan={"2"}> {item.description}</td>
-                    <td colSpan={"2"}> {item.type}</td>
-                    <td colSpan={"2"}> {item.amount}</td>
-                  </tr>
-                ))}
-              </div>
-            </tbody>
-          </table>
-        </div>
+        <h2> Transactions</h2>
+        <table className="description">
+          <thead>
+            <tr>
+              <th colSpan={"2"}>Description</th>
+              <th colSpan={"2"}>Type</th>
+              <th colSpan={"2"}> Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <div class="transactionTable">
+              {transactions.map((item) => (
+                <tr key={item.id}>
+                  <td colSpan={"2"}> {item.description}</td>
+                  <td colSpan={"2"}> {item.type}</td>
+                  <td colSpan={"2"}> {item.amount}</td>
+                </tr>
+              ))}
+            </div>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

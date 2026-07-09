@@ -1,26 +1,27 @@
-h1,h4{
-    text-align: center;
+h1,
+h4 {
+  text-align: center;
 }
-.dashboard{
-    display:flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 50px;
+.dashboard {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
+.box {
+  width: 250px;
+  height: 100px;
+  padding: 7px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background-color: beige;
+  text-align: center;
+}
 
-}
-.box{
-    width: 250px;
-    height: 100px;
-    padding: 7px;
-    border: 2px solid #333;
-    border-radius: 5px;
-    background-color: beige;
-    text-align: center;
+.transaction {
+  color: black;
 }
 
-.transaction{
-    color:black
-}
 /*.transaction {
   padding-top: 5%;
   justify-self: center;
@@ -33,6 +34,7 @@ width: 100%;
 gap: 20px;
 margin-top: 20px;
 }*/
+
 /*.box1{
     
     gap: 20px;
@@ -56,6 +58,4 @@ margin-top: 20px;
     border-radius: 10px;
     background-color: beige;
     text-align: center;
-}
-
-
+}*/
