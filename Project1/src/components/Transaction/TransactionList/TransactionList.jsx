@@ -1,5 +1,5 @@
 import React from "react";
-import TransactionItem from "./TransactionItem/TransactionItem";
+import TransactionItem from "../TransactionItem/TransactionItem";
 
 function TransactionList({ transactions }) {
   return (

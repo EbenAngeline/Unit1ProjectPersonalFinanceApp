@@ -6,6 +6,7 @@ function Header() {
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
     { to: "/dashboard", label: "Dashboard" },
+    { to: "/budget", label: "Budget" },
     { to: "/transactions", label: "Transactions" },
   ];
 

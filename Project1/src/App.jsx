@@ -6,18 +6,30 @@ import HomePage from "./components/Home/Home";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Budget from "./components/Budget/Budget";
 import Transactions from "./components/Transaction/Transactions";
 import AddTransaction from "./components/Transaction/AddTransaction/AddTransaction";
+import mockTransactions from "./Database/MockData";
 
 function App() {
   const [transactions, setTransactions] = useState(() => {
-    try {
-      const stored = localStorage.getItem("transactions");
-      return stored ? JSON.parse(stored) : [];
-    } catch (e) {
-      return [];
+    const savedTransactions = sessionStorage.getItem("transactions");
+
+    if (savedTransactions) {
+      try {
+        return JSON.parse(savedTransactions);
+      } catch {
+        return mockTransactions;
+      }
     }
+
+    return mockTransactions;
   });
+
+  const updateTransactions = (nextTransactions) => {
+    setTransactions(nextTransactions);
+    sessionStorage.setItem("transactions", JSON.stringify(nextTransactions));
+  };
 
   return (
     <div>
@@ -27,7 +39,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard transactions={transactions} />}
+        />
+        <Route
+          path="/budget"
+          element={<Budget transactions={transactions} />}
+        />
         <Route
           path="/transactions"
           element={
@@ -35,7 +54,7 @@ function App() {
               <Transactions transactions={transactions} />
               <AddTransaction
                 transactions={transactions}
-                setTransactions={setTransactions}
+                setTransactions={updateTransactions}
               />
             </>
           }

@@ -1,14 +1,19 @@
 function HomePage() {
   return (
-    <div>
-      <p>
-        This personal finance project helps users manage their money by tracking
-        income, expenses, budgets, and savings in one place. It provides an
-        easy-to-use interface with insights and reports that help users
-        understand their spending habits and make better financial decisions.
-        The goal of this project is to simplify personal finance management and
-        encourage smarter budgeting and saving.
-      </p>
+    <div className="container">
+      <div className="hero-card">
+        <h2>Take control of your money</h2>
+        <p>
+          Track income, expenses, budgets, and savings in one elegant place.
+          This app helps you understand your spending habits and build stronger
+          financial habits with confidence.
+        </p>
+        <div className="hero-highlights">
+          <span>Budget smart</span>
+          <span>See spending clearly</span>
+          <span>Stay on track</span>
+        </div>
+      </div>
     </div>
   );
 }
