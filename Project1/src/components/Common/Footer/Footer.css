@@ -1,0 +1,18 @@
+:root {
+  --surface-soft: #f7f8fc;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+}
+
+.footer {
+  padding: 1rem 1.5rem;
+  text-align: center;
+  background: var(--surface-soft);
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.footer p {
+  margin: 0;
+}

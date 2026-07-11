@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Common/Header";
+import Header from "./components/Common/Header/Header";
 import HomePage from "./components/Home/Home";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
@@ -32,34 +32,36 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-shell">
       <Header />
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route
-          path="/dashboard"
-          element={<Dashboard transactions={transactions} />}
-        />
-        <Route
-          path="/budget"
-          element={<Budget transactions={transactions} />}
-        />
-        <Route
-          path="/transactions"
-          element={
-            <>
-              <Transactions transactions={transactions} />
-              <AddTransaction
-                transactions={transactions}
-                setTransactions={updateTransactions}
-              />
-            </>
-          }
-        />
-      </Routes>
+      <main className="app-main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/dashboard"
+            element={<Dashboard transactions={transactions} />}
+          />
+          <Route
+            path="/budget"
+            element={<Budget transactions={transactions} />}
+          />
+          <Route
+            path="/transactions"
+            element={
+              <>
+                <Transactions transactions={transactions} />
+                <AddTransaction
+                  transactions={transactions}
+                  setTransactions={updateTransactions}
+                />
+              </>
+            }
+          />
+        </Routes>
+      </main>
     </div>
   );
 }
