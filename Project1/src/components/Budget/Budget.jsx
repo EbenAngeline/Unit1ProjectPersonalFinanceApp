@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import MockData from './MockData';
-import categories from "./MockData";
+import mockTransactions, { budgetLimits } from "../../Database/MockData";
+
 const BudgetCategory = ({ categoryName, limit, spent, remaining, status }) => {
   const isOverBudget = status === "OverBudget";
   const isUnderBudget = status === "Remaining";
-  //const [deletButton,setDeleteButton]=useState("Delete");
-  //const [editButton,setEditButton]=useState();
 
   return (
     <div
@@ -37,7 +34,7 @@ const BudgetCategory = ({ categoryName, limit, spent, remaining, status }) => {
         {isUnderBudget && (
           <span className="status-remaining">
             {" "}
-            Remaining:${remaining.toLocalString()}
+            Remaining:${remaining.toLocaleString()}
           </span>
         )}
       </div>
@@ -54,13 +51,34 @@ const BudgetCategory = ({ categoryName, limit, spent, remaining, status }) => {
   );
 };
 
-const BudgetManagement = () => {
-  const totalBudget = 2450.0;
-  const totalSpent = 1540.15;
+const BudgetManagement = ({ transactions = mockTransactions }) => {
+  const budgetCategories = Object.entries(budgetLimits).map(([name, limit]) => {
+    const expenses = transactions.filter(
+      (transaction) =>
+        transaction.category === name && transaction.type === "Expense",
+    );
+    const spent = expenses.reduce(
+      (total, transaction) => total + Math.abs(transaction.amount),
+      0,
+    );
+    const remaining = limit - spent;
+    const status =
+      remaining < 0 ? "OverBudget" : remaining === 0 ? "Used" : "Remaining";
+
+    return { name, limit, spent, remaining, status };
+  });
+
+  const totalBudget = budgetCategories.reduce(
+    (sum, item) => sum + item.limit,
+    0,
+  );
+  const totalSpent = budgetCategories.reduce(
+    (sum, item) => sum + item.spent,
+    0,
+  );
   const budgetPeriod = "Monthly";
   const overallProgress = (totalSpent / totalBudget) * 100;
-  const mock_categories = categories
- 
+
   return (
     <div className="budget">
       <div className="budget-summary">
@@ -83,7 +101,7 @@ const BudgetManagement = () => {
           <div className="progress-bar">
             <div
               className="progress-bar"
-              style={{ width: `${overallProgress}%` }}
+              style={{ width: `${Math.min(overallProgress, 100)}%` }}
             ></div>
           </div>
         </div>
@@ -92,20 +110,14 @@ const BudgetManagement = () => {
       <main className="budget">
         <h3>Budget Categories</h3>
         <div className="categories">
-          {mock_categories.map((cat, index) => (
+          {budgetCategories.map((cat, index) => (
             <BudgetCategory
-              key={index}
+              key={`${cat.name}-${index}`}
               categoryName={cat.name}
               limit={cat.limit}
               spent={cat.spent}
               remaining={cat.remaining}
-              status={
-                cat.remaining >= 0
-                  ? cat.remaining == 0
-                    ? "used"
-                    : "remaining"
-                  : "over Budget"
-              }
+              status={cat.status}
             />
           ))}
         </div>

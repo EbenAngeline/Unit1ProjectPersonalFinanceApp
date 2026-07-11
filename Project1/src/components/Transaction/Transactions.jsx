@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import TransactionList from "./TransactionList";
-function Transactions({ transactions = [] }) {
+import TransactionList from "./TransactionList/TransactionList";
+import mockTransactions from "../../Database/MockData";
+
+function Transactions({ transactions = mockTransactions }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [SelectedCategory, setSelectedCategory] = useState("All categories");
   const [selectedType, setSelectedType] = useState("All Types");
   const [sortBy, setSortBy] = useState("Date");
   const category = [
     "All categories",
-    "Groceries",
-    "Income",
-    "Transportation",
-    "Entertainment",
-    "Utilities",
+    ...new Set(transactions.map((transaction) => transaction.category)),
   ];
   const types = ["All Types", "Income", "Expense"];
   const sortOptions = ["Date", "Amount"];
