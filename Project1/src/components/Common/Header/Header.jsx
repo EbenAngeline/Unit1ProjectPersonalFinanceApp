@@ -33,7 +33,10 @@ function Header() {
         <span></span>
       </button>
 
-      <nav className={`navbar ${isMenuOpen ? "navbar--open" : ""}`} aria-label="Primary navigation">
+      <nav
+        className={`navbar ${isMenuOpen ? "navbar--open" : ""}`}
+        aria-label="Primary navigation"
+      >
         <ul className="navbar__list">
           {links.map((link) => (
             <li key={link.to}>
@@ -41,7 +44,9 @@ function Header() {
                 to={link.to}
                 end={link.to === "/"}
                 className={({ isActive }) =>
-                  isActive ? "navbar__link navbar__link--active" : "navbar__link"
+                  isActive
+                    ? "navbar__link navbar__link--active"
+                    : "navbar__link"
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
