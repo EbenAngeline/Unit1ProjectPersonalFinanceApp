@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-function AddTransaction({ transactions = [], setTransactions }) {
+import "./AddTransaction.css";
+
+function AddTransaction({ transactions = [], setTransactions, onClose }) {
   const [transactionType, setTransactionType] = useState("Expense");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -45,6 +47,10 @@ function AddTransaction({ transactions = [], setTransactions }) {
     setCategory("");
     setDescription("");
     setDate("");
+
+    if (onClose) {
+      onClose();
+    }
   };
   return (
     <div className="container">
@@ -158,7 +164,9 @@ function AddTransaction({ transactions = [], setTransactions }) {
           </div>
 
           <div className="form-action">
-            <button className="cancel-button">Cancel</button>
+            <button className="cancel-button" onClick={onClose}>
+              Cancel
+            </button>
             <button className="save-button" onClick={handleSave}>
               Save
             </button>

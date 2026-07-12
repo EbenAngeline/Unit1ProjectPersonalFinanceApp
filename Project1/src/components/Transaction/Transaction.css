@@ -1,3 +1,111 @@
-.container {
-  text-align: center;
+.transactions-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+  color: #111827;
+}
+.transactions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.transactions-page h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+.page-subtitle {
+  margin: 0.3rem 0 0;
+  color: #6b7280;
+}
+.add-btn {
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.controls input,
+.controls select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  color: #111827;
+  font-size: 0.95rem;
+}
+.controls label {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+.transaction-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+}
+.transaction-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.transaction-list th,
+.transaction-list td {
+  padding: 0.7rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.95rem;
+}
+.transaction-list th {
+  color: #6b7280;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.income-amount {
+  color: #047857;
+  font-weight: 600;
+}
+.expense-amount {
+  color: #b91c1c;
+  font-weight: 600;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+.modal-content {
+  width: min(100%, 620px);
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 700px) {
+  .transactions-header,
+  .controls {
+    flex-direction: column;
+  }
+  .controls input,
+  .controls select {
+    width: 100%;
+  }
 }
