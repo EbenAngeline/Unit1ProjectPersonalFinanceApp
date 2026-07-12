@@ -1,28 +1,32 @@
+import "./Budget.css";
 import mockTransactions, { budgetLimits } from "../../Database/MockData";
 
 const BudgetCategory = ({ categoryName, limit, spent, remaining, status }) => {
   const isOverBudget = status === "OverBudget";
   const isUnderBudget = status === "Remaining";
+  const usagePercent =
+    limit > 0
+      ? Math.min(Math.max(Math.round((spent / limit) * 100), 0), 100)
+      : 0;
+  const remainingPercent = Math.max(100 - usagePercent, 0);
 
   return (
-    <div
-      className={`budget-category ${isOverBudget ? "over-budget" : ""} ${isUnderBudget ? "under-budget" : ""}`}
-    >
-      <div className=" category">
+    <div className="budget-category">
+      <div className="category-title">
         <h3>{categoryName}</h3>
       </div>
       <div className="category-detail">
         <div className="detail">
-          <span className="label">Limit:</span>
-          <span className="value"> ${limit.toLocaleString()}</span>
+          <span className="label">Limit</span>
+          <span className="value">${limit.toLocaleString()}</span>
         </div>
         <div className="detail">
-          <span className="label">Spent:</span>
-          <span className="value"> ${spent.toLocaleString()}</span>
+          <span className="label">Spent</span>
+          <span className="value">${spent.toLocaleString()}</span>
         </div>
         <div className="detail">
-          <span className="label">Remaining:</span>
-          <span className="value"> ${remaining.toLocaleString()}</span>
+          <span className="label">Remaining</span>
+          <span className="value">${remaining.toLocaleString()}</span>
         </div>
       </div>
       <div className="category-status">
@@ -33,20 +37,17 @@ const BudgetCategory = ({ categoryName, limit, spent, remaining, status }) => {
         )}
         {isUnderBudget && (
           <span className="status-remaining">
-            {" "}
-            Remaining:${remaining.toLocaleString()}
+            {remainingPercent}% remaining
           </span>
         )}
       </div>
-      <div className="progress">
+      <div className="progress-track">
         <div
           className="progress-bar"
-          style={{ width: `${(spent / limit) * 100}` }}
+          style={{ width: `${usagePercent}%` }}
         ></div>
       </div>
-      <div className="usage">
-        {Math.round((spent / limit) * 100)}% {status}
-      </div>
+      <div className="usage">{usagePercent}% used</div>
     </div>
   );
 };
@@ -77,38 +78,50 @@ const BudgetManagement = ({ transactions = mockTransactions }) => {
     0,
   );
   const budgetPeriod = "Monthly";
-  const overallProgress = (totalSpent / totalBudget) * 100;
+  const overallProgress =
+    totalBudget > 0
+      ? Math.min(Math.max(Math.round((totalSpent / totalBudget) * 100), 0), 100)
+      : 0;
 
   return (
-    <div className="budget">
-      <div className="budget-summary">
+    <div className="budget-page">
+      <section className="page-header">
+        <h1>Budget</h1>
+        <p className="page-subtitle">
+          A simple view of your monthly limits and spending progress.
+        </p>
+      </section>
+
+      <section className="budget-summary">
         <div className="summary-item">
-          <span className="label">Total Monthly Budget : </span>
-          <span className="value">{totalBudget.toLocaleString()}</span>
+          <span className="label">Total Monthly Budget</span>
+          <span className="value">${totalBudget.toLocaleString()}</span>
         </div>
         <div className="summary-item">
-          <span className="label">Budget period : </span>
+          <span className="label">Budget period</span>
           <span className="value">{budgetPeriod}</span>
         </div>
         <div className="summary-item">
-          <span className="label">Total Spent :</span>
+          <span className="label">Total spent</span>
           <span className="value">
-            {totalSpent.toLocaleString()}({Math.round(overallProgress)}%)
+            ${totalSpent.toLocaleString()} ({overallProgress}%)
           </span>
         </div>
         <div className="summary-overall">
-          <span className="label">OverAll Progress : </span>
-          <div className="progress-bar">
+          <span className="label">Overall progress</span>
+          <div className="progress-track">
             <div
               className="progress-bar"
-              style={{ width: `${Math.min(overallProgress, 100)}%` }}
+              style={{ width: `${overallProgress}%` }}
             ></div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <main className="budget">
-        <h3>Budget Categories</h3>
+      <section className="budget-section">
+        <div className="section-title-row">
+          <h2>Budget categories</h2>
+        </div>
         <div className="categories">
           {budgetCategories.map((cat, index) => (
             <BudgetCategory
@@ -121,7 +134,7 @@ const BudgetManagement = ({ transactions = mockTransactions }) => {
             />
           ))}
         </div>
-      </main>
+      </section>
     </div>
   );
 };
