@@ -8,7 +8,6 @@ import Contact from "./components/Contact/Contact";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Budget from "./components/Budget/Budget";
 import Transactions from "./components/Transaction/Transactions";
-import AddTransaction from "./components/Transaction/AddTransaction/AddTransaction";
 import mockTransactions from "./Database/MockData";
 
 function App() {
@@ -51,13 +50,10 @@ function App() {
           <Route
             path="/transactions"
             element={
-              <>
-                <Transactions transactions={transactions} />
-                <AddTransaction
-                  transactions={transactions}
-                  setTransactions={updateTransactions}
-                />
-              </>
+              <Transactions
+                transactions={transactions}
+                setTransactions={updateTransactions}
+              />
             }
           />
         </Routes>

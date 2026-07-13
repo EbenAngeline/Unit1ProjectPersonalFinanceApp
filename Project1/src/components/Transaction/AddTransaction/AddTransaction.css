@@ -1,0 +1,111 @@
+.add-transaction {
+  padding: 0.25rem 0;
+}
+.add-transaction h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
+}
+.add-transaction p {
+  margin: 0 0 1rem;
+  color: #6b7280;
+}
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.radio-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.radio-button {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.radio-button.active {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+.radio-button input {
+  margin: 0;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.field-group.description,
+.field-group.date {
+  grid-column: 1 / -1;
+}
+.field-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+}
+.field-group input,
+.field-group select {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.input-with-icon .symbol {
+  padding: 0 0.7rem;
+  color: #6b7280;
+}
+.input-with-icon input {
+  border: none;
+  flex: 1;
+}
+.helper-text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+.form-action {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+.cancel-button,
+.save-button {
+  padding: 0.6rem 0.9rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cancel-button {
+  background: #f3f4f6;
+  color: #111827;
+}
+.save-button {
+  background: #111827;
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import mockTransactions from "../../Database/MockData";
 
@@ -9,48 +10,73 @@ function Dashboard({ transactions = mockTransactions }) {
     .filter((item) => item.type === "Expense")
     .reduce((sum, item) => sum + Math.abs(item.amount), 0);
   const currentBalance = totalIncome - totalExpenses;
+  const recentTransactions = [...transactions]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5);
 
   return (
     <div className="container">
-      <h1>Dashboard</h1>
-      <div className="dashboard">
-        <div className="box">
-          <h2>Current Balance</h2>
-          <p>${currentBalance.toLocaleString()}</p>
+      <section className="dashboard-hero">
+        <div>
+          <h1>Dashboard</h1>
+          <p className="hero-text">
+            A simple view of your balance and recent transactions.
+          </p>
         </div>
-        <div className="box">
-          <h2>Total Expenses</h2>
-          <p>${totalExpenses.toLocaleString()}</p>
-        </div>
-        <div className="box">
-          <h2>Total Income</h2>
-          <p>${totalIncome.toLocaleString()}</p>
-        </div>
-        <br />
-      </div>
+      </section>
 
-      {/* This div must be below the dashboard div otherswise it will try to to put both of them on the same row */}
-      <div className="transaction-card">
-        <h2> Transactions</h2>
+      <section className="dashboard-grid">
+        <article className="box">
+          <p className="box-label">Balance</p>
+          <h2 className={currentBalance >= 0 ? "positive" : "negative"}>
+            ${currentBalance.toLocaleString()}
+          </h2>
+        </article>
+        <article className="box">
+          <p className="box-label">Expenses</p>
+          <h2>${totalExpenses.toLocaleString()}</h2>
+        </article>
+        <article className="box">
+          <p className="box-label">Income</p>
+          <h2>${totalIncome.toLocaleString()}</h2>
+        </article>
+      </section>
+
+      <section className="transaction-card">
+        <div className="transaction-card-header">
+          <h2>Recent activity</h2>
+          <Link className="view-all-link" to="/transactions">
+            View all
+          </Link>
+        </div>
+
         <table className="description">
           <thead>
             <tr>
-              <th colSpan={"2"}>Description</th>
-              <th colSpan={"2"}>Type</th>
-              <th colSpan={"2"}> Amount</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Amount</th>
             </tr>
           </thead>
           <tbody>
-            {transactions.map((item) => (
+            {recentTransactions.map((item) => (
               <tr key={item.id}>
-                <td colSpan={"2"}> {item.description}</td>
-                <td colSpan={"2"}> {item.type}</td>
-                <td colSpan={"2"}> {item.amount.toFixed(2)}</td>
+                <td>{item.description}</td>
+                <td>
+                  <span className={`type-pill ${item.type.toLowerCase()}`}>
+                    {item.type}
+                  </span>
+                </td>
+                <td
+                  className={`amount-cell ${item.type === "Income" ? "income" : "expense"}`}
+                >
+                  ${Math.abs(item.amount).toFixed(2)}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </section>
     </div>
   );
 }
