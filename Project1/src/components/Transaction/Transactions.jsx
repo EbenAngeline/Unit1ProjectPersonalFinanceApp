@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Transaction.css";
 import TransactionList from "./TransactionList/TransactionList";
 import AddTransaction from "./AddTransaction/AddTransaction";

@@ -1,17 +1,17 @@
-import React from "react";
 function TransactionItem({ transaction }) {
   const amountClass =
     transaction.type === "Income" ? "income-amount" : "expense-amount";
 
   return (
-    <tr>
-      <td>{transaction.date}</td>
-      <td>{transaction.description}</td>
-      <td>{transaction.category}</td>
-      <td>{transaction.type}</td>
-      <td className={amountClass}>{transaction.amount.toFixed(2)}</td>
-      <td className="action"></td>
-    </tr>
+    <div className="data-row transaction-row" role="row">
+      <span role="cell">{transaction.date}</span>
+      <span role="cell">{transaction.description}</span>
+      <span role="cell">{transaction.category}</span>
+      <span role="cell">{transaction.type}</span>
+      <span role="cell" className={amountClass}>
+        {transaction.amount.toFixed(2)}
+      </span>
+    </div>
   );
 }
 export default TransactionItem;

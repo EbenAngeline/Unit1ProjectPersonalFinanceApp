@@ -1,20 +1,8 @@
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 2rem;
-  color: #111827;
-}
 .dashboard-hero {
   margin-bottom: 1rem;
 }
-.dashboard-hero h1 {
-  margin: 0;
-  font-size: 1.7rem;
-  font-weight: 600;
-}
 .hero-text {
-  margin: 0.3rem 0 0;
-  color: #6b7280;
+  color: var(--muted);
   text-align: center;
 }
 .dashboard-grid {
@@ -23,33 +11,21 @@
   gap: 0.75rem;
   margin-bottom: 1rem;
 }
-.box,
-.transaction-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1rem;
-}
 .box-label {
-  margin: 0 0 0.3rem;
-  font-size: 0.75rem;
   font-weight: 600;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 .box h2,
 .transaction-card h2 {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--ink);
 }
 .positive {
-  color: #047857;
+  color: var(--success);
 }
 .negative {
-  color: #b91c1c;
+  color: var(--danger);
 }
 .transaction-card-header {
   display: flex;
@@ -60,50 +36,39 @@
 .view-all-link {
   display: inline-block;
   padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  background: #f3f4f6;
-  color: #111827;
+  border-radius: var(--radius-pill);
+  background: var(--divider);
+  color: var(--ink);
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
 }
 .view-all-link:hover {
-  background: #e5e7eb;
+  background: var(--border);
 }
-.description {
-  width: 100%;
-  border-collapse: collapse;
-}
-.description th,
-.description td {
-  padding: 0.6rem 0.3rem;
-  text-align: left;
-  border-bottom: 1px solid #f3f4f6;
-  font-size: 0.95rem;
-}
-.description th {
-  color: #6b7280;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.activity-row {
+  grid-template-columns: 1fr 110px 90px;
 }
 .type-pill {
   display: inline-block;
   padding: 0.2rem 0.5rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 600;
 }
 .type-pill.income,
 .amount-cell.income {
-  color: #047857;
+  color: var(--success);
 }
 .type-pill.expense,
 .amount-cell.expense {
-  color: #b91c1c;
+  color: var(--danger);
 }
 @media (max-width: 700px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+  .activity-row {
+    grid-template-columns: 1fr 90px 80px;
   }
 }

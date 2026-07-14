@@ -7,7 +7,7 @@
 }
 .add-transaction p {
   margin: 0 0 1rem;
-  color: #6b7280;
+  color: var(--muted);
 }
 .transaction-form {
   display: flex;
@@ -24,14 +24,14 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.45rem 0.7rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
   cursor: pointer;
 }
 .radio-button.active {
-  background: #111827;
+  background: var(--ink);
   color: #fff;
-  border-color: #111827;
+  border-color: var(--ink);
 }
 .radio-button input {
   margin: 0;
@@ -53,25 +53,25 @@
 .field-label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--ink);
 }
 .field-group input,
 .field-group select {
   padding: 0.6rem 0.7rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   font-size: 0.95rem;
 }
 .input-with-icon {
   display: flex;
   align-items: center;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 .input-with-icon .symbol {
   padding: 0 0.7rem;
-  color: #6b7280;
+  color: var(--muted);
 }
 .input-with-icon input {
   border: none;
@@ -80,7 +80,7 @@
 .helper-text {
   margin: 0;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--muted);
 }
 .form-action {
   display: flex;
@@ -92,16 +92,16 @@
 .save-button {
   padding: 0.6rem 0.9rem;
   border: none;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-weight: 600;
   cursor: pointer;
 }
 .cancel-button {
-  background: #f3f4f6;
-  color: #111827;
+  background: var(--divider);
+  color: var(--ink);
 }
 .save-button {
-  background: #111827;
+  background: var(--ink);
   color: #fff;
 }
 @media (max-width: 700px) {

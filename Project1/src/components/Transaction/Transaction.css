@@ -1,9 +1,3 @@
-.transactions-page {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 2rem;
-  color: #111827;
-}
 .transactions-header {
   display: flex;
   justify-content: space-between;
@@ -11,20 +5,14 @@
   gap: 1rem;
   margin-bottom: 1rem;
 }
-.transactions-page h1 {
-  margin: 0;
-  font-size: 1.7rem;
-  font-weight: 600;
-}
 .page-subtitle {
-  margin: 0.3rem 0 0;
-  color: #6b7280;
+  color: #091b3e;
 }
 .add-btn {
   padding: 0.55rem 0.8rem;
   border: none;
-  border-radius: 999px;
-  background: #111827;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
   color: #fff;
   font-size: 0.9rem;
   font-weight: 600;
@@ -39,45 +27,25 @@
 .controls input,
 .controls select {
   padding: 0.6rem 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #fff;
-  color: #111827;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
   font-size: 0.95rem;
 }
 .controls label {
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--muted);
 }
-.transaction-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1rem;
-}
-.transaction-list table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.transaction-list th,
-.transaction-list td {
-  padding: 0.7rem 0.5rem;
-  text-align: left;
-  border-bottom: 1px solid #f3f4f6;
-  font-size: 0.95rem;
-}
-.transaction-list th {
-  color: #6b7280;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.transaction-row {
+  grid-template-columns: 110px 1fr 130px 90px 90px;
 }
 .income-amount {
-  color: #047857;
+  color: var(--success);
   font-weight: 600;
 }
 .expense-amount {
-  color: #b91c1c;
+  color: var(--danger);
   font-weight: 600;
 }
 .modal-overlay {
@@ -94,8 +62,8 @@
   width: min(100%, 620px);
   max-height: 90vh;
   overflow: auto;
-  background: #fff;
-  border-radius: 12px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
   padding: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
@@ -107,5 +75,8 @@
   .controls input,
   .controls select {
     width: 100%;
+  }
+  .transaction-row {
+    grid-template-columns: 90px 1fr 100px 80px 80px;
   }
 }

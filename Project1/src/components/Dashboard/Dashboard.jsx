@@ -15,7 +15,7 @@ function Dashboard({ transactions = mockTransactions }) {
     .slice(0, 5);
 
   return (
-    <div className="container">
+    <div className="dashboard-page">
       <section className="dashboard-hero">
         <div>
           <h1>Dashboard</h1>
@@ -50,32 +50,29 @@ function Dashboard({ transactions = mockTransactions }) {
           </Link>
         </div>
 
-        <table className="description">
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentTransactions.map((item) => (
-              <tr key={item.id}>
-                <td>{item.description}</td>
-                <td>
-                  <span className={`type-pill ${item.type.toLowerCase()}`}>
-                    {item.type}
-                  </span>
-                </td>
-                <td
-                  className={`amount-cell ${item.type === "Income" ? "income" : "expense"}`}
-                >
-                  ${Math.abs(item.amount).toFixed(2)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="data-table" role="table">
+          <div className="data-row data-row--header activity-row" role="row">
+            <span role="columnheader">Description</span>
+            <span role="columnheader">Type</span>
+            <span role="columnheader">Amount</span>
+          </div>
+          {recentTransactions.map((item) => (
+            <div className="data-row activity-row" role="row" key={item.id}>
+              <span role="cell">{item.description}</span>
+              <span role="cell">
+                <span className={`type-pill ${item.type.toLowerCase()}`}>
+                  {item.type}
+                </span>
+              </span>
+              <span
+                role="cell"
+                className={`amount-cell ${item.type === "Income" ? "income" : "expense"}`}
+              >
+                ${Math.abs(item.amount).toFixed(2)}
+              </span>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );

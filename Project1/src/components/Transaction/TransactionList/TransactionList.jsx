@@ -1,25 +1,18 @@
-import React from "react";
 import TransactionItem from "../TransactionItem/TransactionItem";
 
 function TransactionList({ transactions }) {
   return (
-    <div className="transaction-list">
-      <table>
-        <thead>
-          <tr>
-            <th> DATE</th>
-            <th>DESCRIPTION</th>
-            <th> CATEGORY</th>
-            <th> TYPE</th>
-            <th> AMOUNT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction) => (
-            <TransactionItem key={transaction.id} transaction={transaction} />
-          ))}
-        </tbody>
-      </table>
+    <div className="data-table transaction-list" role="table">
+      <div className="data-row data-row--header transaction-row" role="row">
+        <span role="columnheader">Date</span>
+        <span role="columnheader">Description</span>
+        <span role="columnheader">Category</span>
+        <span role="columnheader">Type</span>
+        <span role="columnheader">Amount</span>
+      </div>
+      {transactions.map((transaction) => (
+        <TransactionItem key={transaction.id} transaction={transaction} />
+      ))}
     </div>
   );
 }
