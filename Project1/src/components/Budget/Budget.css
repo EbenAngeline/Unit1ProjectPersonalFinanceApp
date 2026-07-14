@@ -1,27 +1,9 @@
-.budget-page {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 2rem;
-  color: #111827;
-}
 .page-header {
   margin-bottom: 1rem;
 }
-.page-header h1 {
-  margin: 0;
-  font-size: 1.7rem;
-  font-weight: 600;
-}
-.page-subtitle {
-  margin: 0.3rem 0 0;
-  color: #6b7280;
-}
+
 .budget-summary,
 .budget-section {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1rem;
   margin-bottom: 1rem;
 }
 .budget-summary {
@@ -32,18 +14,8 @@
 .summary-item {
   padding: 0.4rem 0;
 }
-.summary-item .label,
 .summary-item .value {
   display: block;
-}
-.summary-item .label {
-  font-size: 0.75rem;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.2rem;
-}
-.summary-item .value {
   font-size: 1.05rem;
   font-weight: 600;
 }
@@ -53,18 +25,21 @@
 .progress-track {
   width: 100%;
   height: 8px;
-  background: #f3f4f6;
-  border-radius: 999px;
+  background: var(--divider);
+  border-radius: var(--radius-pill);
   overflow: hidden;
   margin-top: 0.4rem;
 }
 .progress-bar {
   height: 100%;
-  background: #111827;
-  border-radius: 999px;
+  background: rgb(1, 97, 46);
+  border-radius: var(--radius-pill);
 }
 .section-title-row {
   margin-bottom: 0.75rem;
+}
+.page-subtitle{
+ color: #25539e;
 }
 .section-title-row h2 {
   margin: 0;
@@ -76,9 +51,13 @@
   gap: 0.75rem;
 }
 .budget-category {
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   padding: 0.9rem;
+}
+.budget-category:hover {
+  border-color: #2563eb;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
 }
 .category-title h3 {
   margin: 0;
@@ -91,14 +70,6 @@
   gap: 0.75rem;
   margin: 0.7rem 0;
 }
-.detail .label {
-  display: block;
-  font-size: 0.72rem;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.2rem;
-}
 .detail .value {
   font-size: 0.95rem;
   font-weight: 600;
@@ -107,21 +78,32 @@
   margin-bottom: 0.5rem;
 }
 .status-over {
-  color: #b91c1c;
+  color: var(--danger);
   font-weight: 600;
 }
 .status-remaining {
-  color: #047857;
+  color: var(--success);
   font-weight: 600;
 }
 .usage {
   margin-top: 0.4rem;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--muted);
 }
-@media (max-width: 700px) {
+/* Breakpoint 1: tablet - collapse the 2/3-column summaries to one column */
+@media (max-width: 768px) {
   .budget-summary,
   .category-detail {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Breakpoint 2: phone - tighten category card spacing */
+@media (max-width: 480px) {
+  .budget-category {
+    padding: 0.65rem;
+  }
+  .category-detail {
+    gap: 0.5rem;
   }
 }

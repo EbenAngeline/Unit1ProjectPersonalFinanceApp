@@ -1,10 +1,7 @@
 :root {
-  --surface: #ffffff;
   --surface-soft: #f7f8fc;
-  --text: #111827;
-  --muted: #6b7280;
-  --accent: #4f46e5;
-  --border: #e5e7eb;
+  --accent: #6e6ab0;
+  background-color: #b1d5ff;
 }
 
 .header {
@@ -13,7 +10,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  background: var(--surface);
+  background: rgb(246, 241, 244);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
@@ -31,10 +28,13 @@
 }
 
 .header__title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  -webkit-text-fill-color: #0062ff;
+  text-align: left;
   margin: 0;
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--ink);
 }
 
 .header__subtitle {
@@ -44,11 +44,36 @@
   color: var(--muted);
 }
 
-@media (max-width: 720px) {
+/* Breakpoint 1: tablet - collapse the sidebar into a top bar with a
+   hamburger toggle; the nav itself drops down full-width below it. */
+@media (max-width: 768px) {
   .header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
     width: 100%;
     height: auto;
     border-right: 0;
     border-bottom: 1px solid var(--border);
+    z-index: 30;
+  }
+
+  .header__intro {
+    width: auto;
+    flex: 1 1 auto;
+  }
+}
+
+/* Breakpoint 2: phone - tighten the bar further */
+@media (max-width: 480px) {
+  .header {
+    padding: 0.75rem 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .header__title {
+    font-size: 0.95rem;
   }
 }

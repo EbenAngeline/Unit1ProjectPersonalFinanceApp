@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
+import Table from "../Common/Table/Table";
 import mockTransactions from "../../Database/MockData";
 
 function Dashboard({ transactions = mockTransactions }) {
@@ -15,13 +16,13 @@ function Dashboard({ transactions = mockTransactions }) {
     .slice(0, 5);
 
   return (
-    <div className="container">
+    <div className="dashboard-page">
       <section className="dashboard-hero">
         <div>
           <h1>Dashboard</h1>
-          <p className="hero-text">
+          <h3 className="hero-text">
             A simple view of your balance and recent transactions.
-          </p>
+          </h3>
         </div>
       </section>
 
@@ -50,32 +51,36 @@ function Dashboard({ transactions = mockTransactions }) {
           </Link>
         </div>
 
-        <table className="description">
-          <thead>
+        <Table
+          className="activity-table"
+          headers={["Description", "Type", "Amount"]}
+        >
+          {recentTransactions.length === 0 ? (
             <tr>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Amount</th>
+              <td className="table-empty" colSpan={3}>
+                No recent activity yet.
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {recentTransactions.map((item) => (
-              <tr key={item.id}>
-                <td>{item.description}</td>
+          ) : (
+            recentTransactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.description}</td>
                 <td>
-                  <span className={`type-pill ${item.type.toLowerCase()}`}>
-                    {item.type}
+                  <span
+                    className={`type-pill ${transaction.type.toLowerCase()}`}
+                  >
+                    {transaction.type}
                   </span>
                 </td>
                 <td
-                  className={`amount-cell ${item.type === "Income" ? "income" : "expense"}`}
+                  className={`amount-cell ${transaction.type === "Income" ? "income" : "expense"}`}
                 >
-                  ${Math.abs(item.amount).toFixed(2)}
+                  ${Math.abs(transaction.amount).toFixed(2)}
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            ))
+          )}
+        </Table>
       </section>
     </div>
   );

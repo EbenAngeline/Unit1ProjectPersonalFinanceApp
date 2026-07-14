@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./AddTransaction.css";
+import Button from "../../Common/Button/Button";
 
-function AddTransaction({ transactions = [], setTransactions, onClose }) {
-  const [transactionType, setTransactionType] = useState("Expense");
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const handleSave = () => {
+function AddTransaction({
+  transactions = [],
+  setTransactions,
+  onClose,
+  editingTransaction = null,
+}) {
+  const isEditing = Boolean(editingTransaction);
+  const [transactionType, setTransactionType] = useState(
+    editingTransaction?.type ?? "Expense",
+  );
+  const [amount, setAmount] = useState(
+    editingTransaction ? String(Math.abs(editingTransaction.amount)) : "",
+  );
+  const [category, setCategory] = useState(editingTransaction?.category ?? "");
+  const [description, setDescription] = useState(
+    editingTransaction?.description ?? "",
+  );
+  const [date, setDate] = useState(editingTransaction?.date ?? "");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     // basic validation
     if (
       !amount ||
@@ -24,29 +39,37 @@ function AddTransaction({ transactions = [], setTransactions, onClose }) {
     const signedAmount =
       transactionType === "Expense" ? -numericAmount : numericAmount;
 
-    const nextId =
-      transactions && transactions.length
-        ? Math.max(...transactions.map((t) => t.id)) + 1
-        : 1;
+    if (isEditing) {
+      const updated = transactions.map((transaction) =>
+        transaction.id === editingTransaction.id
+          ? {
+              ...transaction,
+              date,
+              description,
+              category,
+              type: transactionType,
+              amount: signedAmount,
+            }
+          : transaction,
+      );
+      setTransactions(updated);
+    } else {
+      const nextId =
+        transactions && transactions.length
+          ? Math.max(...transactions.map((t) => t.id)) + 1
+          : 1;
 
-    const newTransaction = {
-      id: nextId,
-      date,
-      description,
-      category,
-      type: transactionType,
-      amount: signedAmount,
-    };
+      const newTransaction = {
+        id: nextId,
+        date,
+        description,
+        category,
+        type: transactionType,
+        amount: signedAmount,
+      };
 
-    const updated = [newTransaction, ...(transactions || [])];
-    setTransactions(updated);
-
-    // reset form
-    setTransactionType("Expense");
-    setAmount("");
-    setCategory("");
-    setDescription("");
-    setDate("");
+      setTransactions([newTransaction, ...(transactions || [])]);
+    }
 
     if (onClose) {
       onClose();
@@ -55,10 +78,14 @@ function AddTransaction({ transactions = [], setTransactions, onClose }) {
   return (
     <div className="container">
       <div className="add-transaction">
-        <h2>Add Transaction</h2>
-        <p>Enter the details below to log a new transaction</p>
+        <h2>{isEditing ? "Edit Transaction" : "Add Transaction"}</h2>
+        <p>
+          {isEditing
+            ? "Update the details for this transaction"
+            : "Enter the details below to log a new transaction"}
+        </p>
 
-        <div className="transaction-form">
+        <form className="transaction-form" onSubmit={handleSubmit}>
           <label className="field-label">Transaction Type</label>
           <div className="radio-buttons">
             <label
@@ -164,14 +191,19 @@ function AddTransaction({ transactions = [], setTransactions, onClose }) {
           </div>
 
           <div className="form-action">
-            <button className="cancel-button" onClick={onClose}>
+            <Button
+              type="button"
+              variant="secondary"
+              className="cancel-button"
+              onClick={onClose}
+            >
               Cancel
-            </button>
-            <button className="save-button" onClick={handleSave}>
-              Save
-            </button>
+            </Button>
+            <Button type="submit" variant="primary" className="save-button">
+              {isEditing ? "Save Changes" : "Save"}
+            </Button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

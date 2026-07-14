@@ -1,9 +1,3 @@
-.transactions-page {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 2rem;
-  color: #111827;
-}
 .transactions-header {
   display: flex;
   justify-content: space-between;
@@ -11,20 +5,21 @@
   gap: 1rem;
   margin-bottom: 1rem;
 }
-.transactions-page h1 {
-  margin: 0;
-  font-size: 1.7rem;
-  font-weight: 600;
+.transactions-header p{
+color:blue
 }
+.transactions-header h1{
+  text-align: center;
+}
+
 .page-subtitle {
-  margin: 0.3rem 0 0;
-  color: #6b7280;
+  color: #091b3e;
 }
 .add-btn {
   padding: 0.55rem 0.8rem;
   border: none;
-  border-radius: 999px;
-  background: #111827;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
   color: #fff;
   font-size: 0.9rem;
   font-weight: 600;
@@ -39,46 +34,56 @@
 .controls input,
 .controls select {
   padding: 0.6rem 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  background: #fff;
-  color: #111827;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
   font-size: 0.95rem;
 }
 .controls label {
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--muted);
 }
-.transaction-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1rem;
+.transaction-table th:nth-child(1),
+.transaction-table td:nth-child(1) {
+  width: 110px;
 }
-.transaction-list table {
-  width: 100%;
-  border-collapse: collapse;
+.transaction-table th:nth-child(3),
+.transaction-table td:nth-child(3) {
+  width: 130px;
 }
-.transaction-list th,
-.transaction-list td {
-  padding: 0.7rem 0.5rem;
-  text-align: left;
-  border-bottom: 1px solid #f3f4f6;
-  font-size: 0.95rem;
+.transaction-table th:nth-child(4),
+.transaction-table td:nth-child(4),
+.transaction-table th:nth-child(5),
+.transaction-table td:nth-child(5) {
+  width: 90px;
 }
-.transaction-list th {
-  color: #6b7280;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.transaction-table th:nth-child(6),
+.transaction-table td:nth-child(6) {
+  width: 150px;
 }
 .income-amount {
-  color: #047857;
+  color: var(--success);
   font-weight: 600;
 }
 .expense-amount {
-  color: #b91c1c;
+  color: var(--danger);
   font-weight: 600;
+}
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.row-action-btn {
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.row-action-btn.row-action-btn--danger {
+  background: rgba(185, 28, 28, 0.12);
+  color: var(--danger);
 }
 .modal-overlay {
   position: fixed;
@@ -94,12 +99,14 @@
   width: min(100%, 620px);
   max-height: 90vh;
   overflow: auto;
-  background: #fff;
-  border-radius: 12px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
   padding: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
-@media (max-width: 700px) {
+
+/* Breakpoint 1: tablet - stack header/controls, narrow the row columns */
+@media (max-width: 768px) {
   .transactions-header,
   .controls {
     flex-direction: column;
@@ -107,5 +114,51 @@
   .controls input,
   .controls select {
     width: 100%;
+  }
+  .transaction-table th:nth-child(1),
+  .transaction-table td:nth-child(1) {
+    width: 90px;
+  }
+  .transaction-table th:nth-child(3),
+  .transaction-table td:nth-child(3) {
+    width: 100px;
+  }
+  .transaction-table th:nth-child(4),
+  .transaction-table td:nth-child(4),
+  .transaction-table th:nth-child(5),
+  .transaction-table td:nth-child(5) {
+    width: 80px;
+  }
+  .transaction-table th:nth-child(6),
+  .transaction-table td:nth-child(6) {
+    width: 130px;
+  }
+}
+
+/* Breakpoint 2: phone - tighter row + modal padding */
+@media (max-width: 480px) {
+  .transaction-table {
+    font-size: 0.85rem;
+  }
+  .transaction-table th:nth-child(1),
+  .transaction-table td:nth-child(1) {
+    width: 70px;
+  }
+  .transaction-table th:nth-child(3),
+  .transaction-table td:nth-child(3) {
+    width: 85px;
+  }
+  .transaction-table th:nth-child(4),
+  .transaction-table td:nth-child(4),
+  .transaction-table th:nth-child(5),
+  .transaction-table td:nth-child(5) {
+    width: 65px;
+  }
+  .transaction-table th:nth-child(6),
+  .transaction-table td:nth-child(6) {
+    width: 110px;
+  }
+  .modal-content {
+    padding: 0.75rem;
   }
 }
