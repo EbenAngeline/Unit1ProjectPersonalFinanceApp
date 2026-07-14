@@ -43,7 +43,7 @@ h4 {
 
 .info-card h2,
 .hero-card h2 {
-   text-align: center;
+  text-align: center;
   margin: 0;
   font-size: 1.6rem;
   color: var(--ink);
@@ -62,7 +62,12 @@ h4 {
   line-height: 1.7;
   font-size: 1rem;
 }
-
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: bold;
+}
 .feature-list,
 .hero-highlights {
   display: flex;
@@ -95,7 +100,6 @@ h4 {
   font-size: 1.7rem;
   font-weight: 600;
 }
-
 
 .hero-text {
   margin: 0.3rem 0 0;

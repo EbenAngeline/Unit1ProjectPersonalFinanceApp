@@ -2,16 +2,22 @@
   color: var(--muted);
 }
 
+.hero-card h3 {
+  color: black;
+  text-align: center;
+}
+
 .hero-highlights span {
   color: #374151;
 }
-.image-size{
+
+.image-size {
   display: block;
   justify-content: center;
-margin: 0 auto;
+  margin: 0 auto;
   padding: 80px;
   align-items: center;
- width:500px;
- height :auto;
- margin-bottom: 30px;
+  width: 500px;
+  height: auto;
+  margin-bottom: 30px;
 }

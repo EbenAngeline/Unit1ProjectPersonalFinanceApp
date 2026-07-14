@@ -11,11 +11,9 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Budget from "./components/Budget/Budget";
 import Transactions from "./components/Transaction/Transactions";
 import mockTransactions from "./Database/MockData";
-
 function App() {
   const [transactions, setTransactions] = useState(() => {
     const savedTransactions = sessionStorage.getItem("transactions");
-
     if (savedTransactions) {
       try {
         return JSON.parse(savedTransactions);

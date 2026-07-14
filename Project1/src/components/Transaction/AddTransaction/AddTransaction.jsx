@@ -2,6 +2,10 @@ import { useState } from "react";
 import "./AddTransaction.css";
 import Button from "../../Common/Button/Button";
 
+function getTodayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
 function AddTransaction({
   transactions = [],
   setTransactions,
@@ -20,18 +24,22 @@ function AddTransaction({
     editingTransaction?.description ?? "",
   );
   const [date, setDate] = useState(editingTransaction?.date ?? "");
-
+  const todayISO = getTodayISO();
   const handleSubmit = (event) => {
     event.preventDefault();
-    // basic validation
     if (
       !amount ||
       isNaN(Number(amount)) ||
+      Number(amount) <= 0 ||
       !category ||
       !description ||
       !date
     ) {
       alert("Please fill in all fields with valid values.");
+      return;
+    }
+    if (date > todayISO) {
+      alert("Date cannot be in the future.");
       return;
     }
 
@@ -125,6 +133,9 @@ function AddTransaction({
                 <input
                   type="number"
                   id="amount"
+                  min="0.01"
+                  step="0.01"
+                  required
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   placeholder="Enter the Amount"
@@ -141,6 +152,7 @@ function AddTransaction({
               </label>
               <select
                 id="category"
+                required
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
@@ -171,6 +183,7 @@ function AddTransaction({
               <input
                 type="text"
                 id="description"
+                required
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="e.g Whole Foods Market"
@@ -184,6 +197,8 @@ function AddTransaction({
               <input
                 type="date"
                 id="date"
+                required
+                max={todayISO}
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
               />

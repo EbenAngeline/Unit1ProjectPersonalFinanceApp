@@ -1,5 +1,5 @@
 .page-header {
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
 }
 
 .budget-summary,
@@ -38,8 +38,8 @@
 .section-title-row {
   margin-bottom: 0.75rem;
 }
-.page-subtitle{
- color: #25539e;
+.page-subtitle {
+  color: #25539e;
 }
 .section-title-row h2 {
   margin: 0;

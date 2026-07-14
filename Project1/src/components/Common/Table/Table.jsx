@@ -1,17 +1,43 @@
 import "./Table.css";
 
-function Table({ headers, children, className = "" }) {
+function Table({
+  columns,
+  rows,
+  getRowKey,
+  emptyMessage = "No data available.",
+  className = "",
+}) {
   return (
     <div className={`table-wrapper ${className}`.trim()}>
       <table className="table">
         <thead>
           <tr>
-            {headers.map((header) => (
-              <th key={header}>{header}</th>
+            {columns.map((column) => (
+              <th key={column.key} style={{ width: `${100 / columns.length}%` }}>
+                {column.label}
+              </th>
             ))}
           </tr>
         </thead>
-        <tbody>{children}</tbody>
+        <tbody>
+          {rows.length === 0 ? (
+            <tr>
+              <td className="table-empty" colSpan={columns.length}>
+                {emptyMessage}
+              </td>
+            </tr>
+          ) : (
+            rows.map((row) => (
+              <tr key={getRowKey(row)}>
+                {columns.map((column) => (
+                  <td key={column.key} className={column.cellClassName?.(row)}>
+                    {column.render ? column.render(row) : row[column.key]}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
+        </tbody>
       </table>
     </div>
   );

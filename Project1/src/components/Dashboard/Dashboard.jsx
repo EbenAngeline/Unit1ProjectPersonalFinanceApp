@@ -3,6 +3,35 @@ import "./Dashboard.css";
 import Table from "../Common/Table/Table";
 import mockTransactions from "../../Database/MockData";
 
+const activityColumns = [
+  { key: "description", label: "Description" },
+  {
+    key: "category",
+    label: "Category",
+    render: (transaction) => (
+      <span className={`type-pill ${transaction.category.toLowerCase()}`}>
+        {transaction.category}
+      </span>
+    ),
+  },
+  {
+    key: "type",
+    label: "Type",
+    render: (transaction) => (
+      <span className={`type-pill ${transaction.type.toLowerCase()}`}>
+        {transaction.type}
+      </span>
+    ),
+  },
+  {
+    key: "amount",
+    label: "Amount",
+    cellClassName: (transaction) =>
+      `amount-cell ${transaction.type === "Income" ? "income" : "expense"}`,
+    render: (transaction) => `$${Math.abs(transaction.amount).toFixed(2)}`,
+  },
+];
+
 function Dashboard({ transactions = mockTransactions }) {
   const totalIncome = transactions
     .filter((item) => item.type === "Income")
@@ -53,34 +82,11 @@ function Dashboard({ transactions = mockTransactions }) {
 
         <Table
           className="activity-table"
-          headers={["Description", "Type", "Amount"]}
-        >
-          {recentTransactions.length === 0 ? (
-            <tr>
-              <td className="table-empty" colSpan={3}>
-                No recent activity yet.
-              </td>
-            </tr>
-          ) : (
-            recentTransactions.map((transaction) => (
-              <tr key={transaction.id}>
-                <td>{transaction.description}</td>
-                <td>
-                  <span
-                    className={`type-pill ${transaction.type.toLowerCase()}`}
-                  >
-                    {transaction.type}
-                  </span>
-                </td>
-                <td
-                  className={`amount-cell ${transaction.type === "Income" ? "income" : "expense"}`}
-                >
-                  ${Math.abs(transaction.amount).toFixed(2)}
-                </td>
-              </tr>
-            ))
-          )}
-        </Table>
+          columns={activityColumns}
+          rows={recentTransactions}
+          getRowKey={(transaction) => transaction.id}
+          emptyMessage="No recent activity yet."
+        />
       </section>
     </div>
   );
