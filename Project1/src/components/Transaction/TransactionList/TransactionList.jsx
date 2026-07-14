@@ -1,19 +1,58 @@
-import TransactionItem from "../TransactionItem/TransactionItem";
+import Table from "../../Common/Table/Table";
+import Button from "../../Common/Button/Button";
 
-function TransactionList({ transactions }) {
+function TransactionList({ transactions, onEdit, onDelete }) {
   return (
-    <div className="data-table transaction-list" role="table">
-      <div className="data-row data-row--header transaction-row" role="row">
-        <span role="columnheader">Date</span>
-        <span role="columnheader">Description</span>
-        <span role="columnheader">Category</span>
-        <span role="columnheader">Type</span>
-        <span role="columnheader">Amount</span>
-      </div>
-      {transactions.map((transaction) => (
-        <TransactionItem key={transaction.id} transaction={transaction} />
-      ))}
-    </div>
+    <Table
+      className="transaction-table"
+      headers={["Date", "Description", "Category", "Type", "Amount", "Actions"]}
+    >
+      {transactions.length === 0 ? (
+        <tr>
+          <td className="table-empty" colSpan={6}>
+            No transactions match your filters.
+          </td>
+        </tr>
+      ) : (
+        transactions.map((transaction) => (
+          <tr key={transaction.id}>
+            <td>{transaction.date}</td>
+            <td>{transaction.description}</td>
+            <td>{transaction.category}</td>
+            <td>{transaction.type}</td>
+            <td
+              className={
+                transaction.type === "Income"
+                  ? "income-amount"
+                  : "expense-amount"
+              }
+            >
+              {transaction.amount.toFixed(2)}
+            </td>
+            <td>
+              <div className="row-actions">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="row-action-btn"
+                  onClick={() => onEdit(transaction)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="row-action-btn row-action-btn--danger"
+                  onClick={() => onDelete(transaction)}
+                >
+                  Delete
+                </Button>
+              </div>
+            </td>
+          </tr>
+        ))
+      )}
+    </Table>
   );
 }
 export default TransactionList;

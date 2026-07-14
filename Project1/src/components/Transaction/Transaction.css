@@ -5,6 +5,13 @@
   gap: 1rem;
   margin-bottom: 1rem;
 }
+.transactions-header p{
+color:blue
+}
+.transactions-header h1{
+  text-align: center;
+}
+
 .page-subtitle {
   color: #091b3e;
 }
@@ -37,8 +44,23 @@
   font-size: 0.85rem;
   color: var(--muted);
 }
-.transaction-row {
-  grid-template-columns: 110px 1fr 130px 90px 90px;
+.transaction-table th:nth-child(1),
+.transaction-table td:nth-child(1) {
+  width: 110px;
+}
+.transaction-table th:nth-child(3),
+.transaction-table td:nth-child(3) {
+  width: 130px;
+}
+.transaction-table th:nth-child(4),
+.transaction-table td:nth-child(4),
+.transaction-table th:nth-child(5),
+.transaction-table td:nth-child(5) {
+  width: 90px;
+}
+.transaction-table th:nth-child(6),
+.transaction-table td:nth-child(6) {
+  width: 150px;
 }
 .income-amount {
   color: var(--success);
@@ -47,6 +69,21 @@
 .expense-amount {
   color: var(--danger);
   font-weight: 600;
+}
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.row-action-btn {
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.row-action-btn.row-action-btn--danger {
+  background: rgba(185, 28, 28, 0.12);
+  color: var(--danger);
 }
 .modal-overlay {
   position: fixed;
@@ -67,7 +104,9 @@
   padding: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
-@media (max-width: 700px) {
+
+/* Breakpoint 1: tablet - stack header/controls, narrow the row columns */
+@media (max-width: 768px) {
   .transactions-header,
   .controls {
     flex-direction: column;
@@ -76,7 +115,50 @@
   .controls select {
     width: 100%;
   }
-  .transaction-row {
-    grid-template-columns: 90px 1fr 100px 80px 80px;
+  .transaction-table th:nth-child(1),
+  .transaction-table td:nth-child(1) {
+    width: 90px;
+  }
+  .transaction-table th:nth-child(3),
+  .transaction-table td:nth-child(3) {
+    width: 100px;
+  }
+  .transaction-table th:nth-child(4),
+  .transaction-table td:nth-child(4),
+  .transaction-table th:nth-child(5),
+  .transaction-table td:nth-child(5) {
+    width: 80px;
+  }
+  .transaction-table th:nth-child(6),
+  .transaction-table td:nth-child(6) {
+    width: 130px;
+  }
+}
+
+/* Breakpoint 2: phone - tighter row + modal padding */
+@media (max-width: 480px) {
+  .transaction-table {
+    font-size: 0.85rem;
+  }
+  .transaction-table th:nth-child(1),
+  .transaction-table td:nth-child(1) {
+    width: 70px;
+  }
+  .transaction-table th:nth-child(3),
+  .transaction-table td:nth-child(3) {
+    width: 85px;
+  }
+  .transaction-table th:nth-child(4),
+  .transaction-table td:nth-child(4),
+  .transaction-table th:nth-child(5),
+  .transaction-table td:nth-child(5) {
+    width: 65px;
+  }
+  .transaction-table th:nth-child(6),
+  .transaction-table td:nth-child(6) {
+    width: 110px;
+  }
+  .modal-content {
+    padding: 0.75rem;
   }
 }

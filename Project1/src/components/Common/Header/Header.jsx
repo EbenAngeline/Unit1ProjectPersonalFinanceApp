@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import "../Navbar/Navbar.css";
+import Button from "../Button/Button";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,9 +23,9 @@ function Header() {
         <h1 className="header__title">TRACK YOUR PERSONSAL FINANCE APP</h1>
       </div>
 
-      <button
-        className="navbar__toggle"
-        type="button"
+      <Button
+        variant="icon"
+        className={`navbar__toggle ${isMenuOpen ? "navbar__toggle--active" : ""}`}
         aria-label="Toggle navigation"
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen((open) => !open)}
@@ -32,7 +33,7 @@ function Header() {
         <span></span>
         <span></span>
         <span></span>
-      </button>
+      </Button>
 
       <nav
         className={`navbar ${isMenuOpen ? "navbar--open" : ""}`}

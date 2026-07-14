@@ -1,0 +1,38 @@
+.btn {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent, #4f46e5);
+  outline-offset: 2px;
+}
+
+.btn--primary {
+  background: blue;
+  color: #fff;
+}
+
+.btn--secondary {
+  background: lightblue;
+  color: var(--ink);
+}
+
+.btn--icon {
+  background: transparent;
+  color: blue;
+}

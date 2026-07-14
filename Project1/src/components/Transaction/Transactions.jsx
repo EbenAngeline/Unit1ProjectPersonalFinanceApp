@@ -2,11 +2,13 @@ import { useState } from "react";
 import "./Transaction.css";
 import TransactionList from "./TransactionList/TransactionList";
 import AddTransaction from "./AddTransaction/AddTransaction";
+import Button from "../Common/Button/Button";
 import mockTransactions from "../../Database/MockData";
 
 function Transactions({ transactions = mockTransactions, setTransactions }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingTransaction, setEditingTransaction] = useState(null);
   const [SelectedCategory, setSelectedCategory] = useState("All categories");
   const [selectedType, setSelectedType] = useState("All Types");
   const [sortBy, setSortBy] = useState("Date");
@@ -28,6 +30,25 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
   };
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
+  };
+  const handleAdd = () => {
+    setEditingTransaction(null);
+    setIsModalOpen(true);
+  };
+  const handleEdit = (transaction) => {
+    setEditingTransaction(transaction);
+    setIsModalOpen(true);
+  };
+  const handleDelete = (transaction) => {
+    const confirmed = window.confirm(
+      `Delete "${transaction.description}"? This cannot be undone.`,
+    );
+    if (!confirmed) return;
+    setTransactions(transactions.filter((t) => t.id !== transaction.id));
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingTransaction(null);
   };
   const filteredTransactions = transactions.filter((transaction) => {
     const desc = (transaction.description || "").toString().toLowerCase();
@@ -54,12 +75,12 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
         <div>
           <h1>Transactions</h1>
           <p className="page-subtitle">
-            A simple view of your income, expenses, and activity.
+            <h3>A simple view of your income, expenses, and activity.</h3>
           </p>
         </div>
-        <button className="add-btn" onClick={() => setIsModalOpen(true)}>
+        <Button variant="primary" className="add-btn" onClick={handleAdd}>
           + Add transaction
-        </button>
+        </Button>
       </div>
 
       <div className="controls">
@@ -99,16 +120,21 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
       </div>
 
       <div className="transaction-card">
-        <TransactionList transactions={sortedTransactions} />
+        <TransactionList
+          transactions={sortedTransactions}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
       </div>
 
       {isModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+        <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <AddTransaction
               transactions={transactions}
               setTransactions={setTransactions}
-              onClose={() => setIsModalOpen(false)}
+              onClose={handleCloseModal}
+              editingTransaction={editingTransaction}
             />
           </div>
         </div>

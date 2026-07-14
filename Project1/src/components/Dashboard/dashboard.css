@@ -46,8 +46,16 @@
 .view-all-link:hover {
   background: var(--border);
 }
-.activity-row {
-  grid-template-columns: 1fr 110px 90px;
+.activity-table th:nth-child(2),
+.activity-table td:nth-child(2) {
+  width: 110px;
+}
+.activity-table th:nth-child(3),
+.activity-table td:nth-child(3) {
+  width: 90px;
+}
+.hero-text {
+    color: #25539e;
 }
 .type-pill {
   display: inline-block;
@@ -64,11 +72,36 @@
 .amount-cell.expense {
   color: var(--danger);
 }
-@media (max-width: 700px) {
+/* Breakpoint 1: tablet - stack the summary boxes to one column */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .activity-table th:nth-child(2),
+  .activity-table td:nth-child(2) {
+    width: 90px;
+  }
+  .activity-table th:nth-child(3),
+  .activity-table td:nth-child(3) {
+    width: 80px;
+  }
+}
+
+/* Breakpoint 2: phone - single column, tighter row layout */
+@media (max-width: 480px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
-  .activity-row {
-    grid-template-columns: 1fr 90px 80px;
+  .activity-table th:nth-child(2),
+  .activity-table td:nth-child(2) {
+    width: 70px;
+  }
+  .activity-table th:nth-child(3),
+  .activity-table td:nth-child(3) {
+    width: 65px;
+  }
+  .transaction-card-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 }
