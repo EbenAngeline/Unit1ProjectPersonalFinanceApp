@@ -16,7 +16,10 @@ function HomePage() {
           <span>See spending clearly</span>
           <span>Stay on track</span>
         </div>
-        <img src={pfimage1} alt="There is supposed to be an image"/>
+       
+                  <img src={pfimage1}  className="image-size" alt="There is supposed to be an image"/>
+        
+
       </div>
     </div>
   );

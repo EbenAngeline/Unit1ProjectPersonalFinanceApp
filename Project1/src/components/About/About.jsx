@@ -1,4 +1,6 @@
 import "./About.css";
+import pfimage2 from "../../images/pfimage2.jpg";
+
 
 function About() {
   return (
@@ -15,6 +17,7 @@ function About() {
           <div>Monitor savings goals with ease</div>
           <div>See spending patterns clearly</div>
         </div>
+         <img src={pfimage2}  className="image-size" alt="There is supposed to be an image"/>
       </div>
     </div>
   );

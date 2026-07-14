@@ -43,9 +43,9 @@ const mockTransactions = [
     id: 6,
     date: "2025-01-08",
     description: "Salary deposit",
-    category: "Income",
+    category: "Salary",
     type: "Income",
-    amount: 2500,
+    amount: 7000,
   },
 ];
 

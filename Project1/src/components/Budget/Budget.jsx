@@ -87,10 +87,8 @@ const BudgetManagement = ({ transactions = mockTransactions }) => {
     <div className="budget-page">
       <section className="page-header">
         <h1>Budget</h1>
-        <p className="page-subtitle">
-          A simple view of your monthly limits and spending progress.
-        </p>
-      </section>
+         <h3 className="page-subtitle"> A simple view of your monthly limits and spending progress.</h3>
+         </section>
 
       <section className="budget-summary">
         <div className="summary-item">

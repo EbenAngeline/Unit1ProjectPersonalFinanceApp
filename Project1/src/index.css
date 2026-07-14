@@ -1,3 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
 :root {
   --ink: #111827;
   --muted: #6b7280;
@@ -32,6 +43,7 @@ h4 {
 
 .info-card h2,
 .hero-card h2 {
+   text-align: center;
   margin: 0;
   font-size: 1.6rem;
   color: var(--ink);
@@ -66,12 +78,6 @@ h4 {
   border-bottom: 1px solid var(--border);
 }
 
-@media (max-width: 720px) {
-  .container {
-    padding: 1.25rem 1rem 2rem;
-  }
-}
-
 /* App page wrapper (Dashboard, Budget, Transactions) */
 .dashboard-page,
 .budget-page,
@@ -90,7 +96,7 @@ h4 {
   font-weight: 600;
 }
 
-.page-subtitle,
+
 .hero-text {
   margin: 0.3rem 0 0;
 }
@@ -117,25 +123,19 @@ h4 {
   margin-bottom: 0.25rem;
 }
 
-/* Grid-based data table (transactions list, dashboard recent activity) */
-.data-table {
-  width: 100%;
-  overflow-x: auto;
+/* Breakpoint 1: tablet/narrow window */
+@media (max-width: 768px) {
+  .feature-list,
+  .hero-highlights {
+    gap: 0.6rem;
+  }
 }
 
-.data-row {
-  display: grid;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 0.5rem;
-  border-bottom: 1px solid var(--divider);
-  font-size: 0.95rem;
-}
-
-.data-row--header {
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+/* Breakpoint 2: phone */
+@media (max-width: 480px) {
+  .feature-list,
+  .hero-highlights {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

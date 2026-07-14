@@ -1,5 +1,5 @@
 import "./Contact.css";
-
+import contactusimg from "../../images/contactus-img.jpg";
 function Contact() {
   return (
     <div className="container">
@@ -13,7 +13,8 @@ function Contact() {
           <div>Address: 123 Finance Street, New York, NY 10001</div>
         </div>
       </div>
+      <img src={contactusimg}  className="image-size" alt="There is supposed to be an image"/>
     </div>
   );
-}
+} 
 export default Contact;
