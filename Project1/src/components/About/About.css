@@ -5,14 +5,14 @@
 .feature-list div {
   color: #25539e;
 }
-.image-size{
+.image-size {
   display: block;
   justify-content: center;
   margin: 0 auto;
   padding: 80px;
   margin-top: -30px;
   align-items: center;
- width:500px;
- height :auto;
- margin-bottom: 30px;
+  width: 500px;
+  height: auto;
+  margin-bottom: 30px;
 }
