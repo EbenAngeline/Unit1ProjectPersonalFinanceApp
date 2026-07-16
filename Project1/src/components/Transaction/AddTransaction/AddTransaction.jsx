@@ -27,21 +27,6 @@ function AddTransaction({
   const todayISO = getTodayISO();
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      !amount ||
-      isNaN(Number(amount)) ||
-      Number(amount) <= 0 ||
-      !category ||
-      !description ||
-      !date
-    ) {
-      alert("Please fill in all fields with valid values.");
-      return;
-    }
-    if (date > todayISO) {
-      alert("Date cannot be in the future.");
-      return;
-    }
 
     const numericAmount = Math.abs(Number(amount));
     const signedAmount =

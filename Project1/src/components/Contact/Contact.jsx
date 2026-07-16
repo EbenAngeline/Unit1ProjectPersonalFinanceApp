@@ -11,12 +11,10 @@ function Contact() {
           feedback, our team is ready to assist.
         </h3>
         <ul className="feature-list">
-          <thead>
-            <li>Email: support@yourfinanceapp.com</li>
-            <li>Phone: +1 (123) 456-7890</li>
-            <li>Hours: Monday - Friday, 9:00 AM - 6:00 PM</li>
-            <li>Address: 123 Finance Street, New York, NY 10001</li>
-          </thead>
+          <li>Email: support@yourfinanceapp.com</li>
+          <li>Phone: +1 (123) 456-7890</li>
+          <li>Hours: Monday - Friday, 9:00 AM - 6:00 PM</li>
+          <li>Address: 123 Finance Street, New York, NY 10001</li>
         </ul>
       </div>
       <img
