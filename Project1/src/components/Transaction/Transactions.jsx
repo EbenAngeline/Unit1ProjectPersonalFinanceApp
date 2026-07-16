@@ -74,9 +74,7 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
       <div className="transactions-header">
         <div>
           <h1>Transactions</h1>
-          <p className="page-subtitle">
-            <h3>A simple view of your income, expenses, and activity.</h3>
-          </p>
+          <h3 className="page-subtitle">A simple view of your income, expenses, and activity.</h3>
         </div>
         <Button variant="primary" className="add-btn" onClick={handleAdd}>
           + Add transaction
