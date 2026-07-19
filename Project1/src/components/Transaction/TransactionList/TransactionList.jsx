@@ -22,8 +22,8 @@ function TransactionList({ transactions, onEdit, onDelete }) {
           <Button
             type="button"
             variant="secondary"
-            className="row-action-btn"
-            onClick={() => onEdit(transaction)}
+            className="row-action-btn"//General button styling.
+            onClick={() => onEdit(transaction)}//run immediately while the page is rendering.
           >
             Edit
           </Button>
@@ -45,7 +45,7 @@ function TransactionList({ transactions, onEdit, onDelete }) {
       className="transaction-table"
       columns={columns}
       rows={transactions}
-      getRowKey={(transaction) => transaction.id}
+      getRowKey={(transaction) => transaction.id}   //React requires each row in a list to have a unique key.
       emptyMessage="No transactions match your filters."
     />
   );

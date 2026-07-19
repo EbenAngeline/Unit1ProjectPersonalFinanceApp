@@ -7,33 +7,33 @@ function getTodayISO() {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 function AddTransaction({
-  transactions = [],
-  setTransactions,
-  onClose,
-  editingTransaction = null,
+  transactions = [],       //Current list of transactions.
+  setTransactions,       //Function used to update the transaction list.
+  onClose,                   //Function that closes the popup or modal.
+  editingTransaction = null,   //If adding a new one: If editing an existing transaction, this contains its data.
 }) {
   const isEditing = Boolean(editingTransaction);
   const [transactionType, setTransactionType] = useState(
-    editingTransaction?.type ?? "Expense",
+    editingTransaction?.type ?? "Expense",  // ?-If editingTransaction exists, read its type.??Use the value on the left unless it is null or undefined.  
   );
   const [amount, setAmount] = useState(
-    editingTransaction ? String(Math.abs(editingTransaction.amount)) : "",
+    editingTransaction ? String(Math.abs(editingTransaction.amount)) : "",  //Expenses are stored as negative numbers.
   );
-  const [category, setCategory] = useState(editingTransaction?.category ?? "");
-  const [description, setDescription] = useState(
+  const [category, setCategory] = useState(editingTransaction?.category ?? "");//stores category
+  const [description, setDescription] = useState(                   //stores description
     editingTransaction?.description ?? "",
   );
-  const [date, setDate] = useState(editingTransaction?.date ?? "");
-  const todayISO = getTodayISO();
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const [date, setDate] = useState(editingTransaction?.date ?? ""); //stores date
+  const todayISO = getTodayISO();  //Calls the helper function.
+  const handleSubmit = (event) =>{     
+    event.preventDefault();             //Normally forms refresh the page.This stops that behavior.
 
-    const numericAmount = Math.abs(Number(amount));
+    const numericAmount = Math.abs(Number(amount)); //Number() converts it into
     const signedAmount =
       transactionType === "Expense" ? -numericAmount : numericAmount;
 
     if (isEditing) {
-      const updated = transactions.map((transaction) =>
+      const updated = transactions.map((transaction) =>  //map() goes through every transaction.
         transaction.id === editingTransaction.id
           ? {
               ...transaction,
@@ -45,12 +45,12 @@ function AddTransaction({
             }
           : transaction,
       );
-      setTransactions(updated);
+      setTransactions(updated);  //Updates the state.
     } else {
       const nextId =
         transactions && transactions.length
           ? Math.max(...transactions.map((t) => t.id)) + 1
-          : 1;
+          : 1;                //If no transactions exist, Start with id 1
 
       const newTransaction = {
         id: nextId,
@@ -61,11 +61,11 @@ function AddTransaction({
         amount: signedAmount,
       };
 
-      setTransactions([newTransaction, ...(transactions || [])]);
+      setTransactions([newTransaction, ...(transactions || [])]);  //The new transaction appears at the top of the list.
     }
 
     if (onClose) {
-      onClose();
+      onClose();    //Close the Form
     }
   };
   return (
@@ -86,8 +86,8 @@ function AddTransaction({
             >
               <input
                 type="radio"
-                name="transactionType"
                 value="Expense"
+                name="transactionType"
                 checked={transactionType === "Expense"}
                 onChange={() => setTransactionType("Expense")}
               />
@@ -118,8 +118,8 @@ function AddTransaction({
                 <input
                   type="number"
                   id="amount"
-                  min="0.01"
-                  step="0.01"
+                  min="0.01" //Cannot enter zero or negative values.
+                  step="0.01"  //Allows decimal amounts.
                   required
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
@@ -169,7 +169,7 @@ function AddTransaction({
                 type="text"
                 id="description"
                 required
-                value={description}
+                value={description}  //This tells React which option should currently be selected.
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="e.g Whole Foods Market"
               />

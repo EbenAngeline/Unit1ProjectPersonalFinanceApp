@@ -6,9 +6,9 @@ import mockTransactions from "../../Database/MockData";
 const activityColumns = [
   { key: "description", label: "Description" },
   {
-    key: "category",
-    label: "Category",
-    render: (transaction) => (
+    key: "category",    //look for the description property
+    label: "Category",   //display description in the table header
+    render: (transaction) => (       //the current row of object is passed in to the function(uses custom render fn)
       <span className={`type-pill ${transaction.category.toLowerCase()}`}>
         {transaction.category}
       </span>
@@ -33,16 +33,16 @@ const activityColumns = [
 ];
 
 function Dashboard({ transactions = mockTransactions }) {
-  const totalIncome = transactions
+  const totalIncome = transactions    //keeps only income
     .filter((item) => item.type === "Income")
     .reduce((sum, item) => sum + item.amount, 0);
   const totalExpenses = transactions
     .filter((item) => item.type === "Expense")
     .reduce((sum, item) => sum + Math.abs(item.amount), 0);
   const currentBalance = totalIncome - totalExpenses;
-  const recentTransactions = [...transactions]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 5);
+  const recentTransactions = [...transactions]      //create a copy of the array.it changes the orginal array
+    .sort((a, b) => new Date(b.date) - new Date(a.date))   //Converts dates into Date objects.Newest comes first
+    .slice(0, 5);  //Keeps only the first five.
 
   return (
     <div className="dashboard-page">
@@ -83,8 +83,8 @@ function Dashboard({ transactions = mockTransactions }) {
         <Table
           className="activity-table"
           columns={activityColumns}
-          rows={recentTransactions}
-          getRowKey={(transaction) => transaction.id}
+          rows={recentTransactions}// data to display
+          getRowKey={(transaction) => transaction.id}//Every React list needs a unique key.
           emptyMessage="No recent activity yet."
         />
       </section>

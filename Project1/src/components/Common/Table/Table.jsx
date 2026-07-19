@@ -12,9 +12,9 @@ function Table({
       <table className="table">
         <thead>
           <tr>
-            {columns.map((column) => (
+            {columns.map((column) => (       //.. calculate the width auto ,each coln gets equal width ...display the coln title
               <th key={column.key} style={{ width: `${100 / columns.length}%` }}>
-                {column.label}
+                {column.label}    
               </th>
             ))}
           </tr>
@@ -27,9 +27,9 @@ function Table({
               </td>
             </tr>
           ) : (
-            rows.map((row) => (
-              <tr key={getRowKey(row)}>
-                {columns.map((column) => (
+            rows.map((row) => (     //.. create one table row //React efficiently update only the rows that change.
+              <tr key={getRowKey(row)}>       
+                {columns.map((column) => (     //for each row, loop thro every coln
                   <td key={column.key} className={column.cellClassName?.(row)}>
                     {column.render ? column.render(row) : row[column.key]}
                   </td>

@@ -12,11 +12,11 @@ import Budget from "./components/Budget/Budget";
 import Transactions from "./components/Transaction/Transactions";
 import mockTransactions from "./Database/MockData";
 function App() {
-  const [transactions, setTransactions] = useState(() => {
-    const savedTransactions = sessionStorage.getItem("transactions");
-    if (savedTransactions) {
+  const [transactions, setTransactions] = useState(() => {    //Instead of passing a value directly, it passes a function:
+    const savedTransactions = sessionStorage.getItem("transactions");  //sessionStorage already contain transaction data
+    if (savedTransactions) {    //Data inside sessionStorage is always stored as a string.
       try {
-        return JSON.parse(savedTransactions);
+        return JSON.parse(savedTransactions);   //converts the string back into a JavaScript object or array.
       } catch {
         return mockTransactions;
       }
@@ -27,7 +27,7 @@ function App() {
 
   const updateTransactions = (nextTransactions) => {
     setTransactions(nextTransactions);
-    sessionStorage.setItem("transactions", JSON.stringify(nextTransactions));
+    sessionStorage.setItem("transactions", JSON.stringify(nextTransactions));//This saves the updated list into sessionStorage.
   };
 
   return (
@@ -43,18 +43,18 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route
               path="/dashboard"
-              element={<Dashboard transactions={transactions} />}
+              element={<Dashboard transactions={transactions} />}//This sends the transaction data to the Dashboard component as a prop.
             />
             <Route
               path="/budget"
-              element={<Budget transactions={transactions} />}
+              element={<Budget transactions={transactions} />} //Budget receives the transaction list.
             />
             <Route
               path="/transactions"
               element={
                 <Transactions
-                  transactions={transactions}
-                  setTransactions={updateTransactions}
+                  transactions={transactions}  //Current list.
+                  setTransactions={updateTransactions}  //Saves the updated data to sessionStorage.
                 />
               }
             />
