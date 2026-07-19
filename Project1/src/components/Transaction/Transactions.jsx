@@ -14,11 +14,11 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
   const [sortBy, setSortBy] = useState("Date");
   const category = [
     "All categories",
-    ...new Set(transactions.map((transaction) => transaction.category)),
-  ];
-  const types = ["All Types", "Income", "Expense"];
-  const sortOptions = ["Date", "Amount"];
-
+    ...new Set(transactions.map((transaction) => transaction.category)),//This creates the dropdown list of categories automatically.
+  ];  //A Set removes duplicate values.
+  const types = ["All Types", "Income", "Expense"];//This creates the Type dropdown.
+  const sortOptions = ["Date", "Amount"];//Creates the Sort dropdown.
+//These functions respond to user actions.
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -43,15 +43,15 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
     const confirmed = window.confirm(
       `Delete "${transaction.description}"? This cannot be undone.`,
     );
-    if (!confirmed) return;
+    if (!confirmed) return;  //The function stops immediately.
     setTransactions(transactions.filter((t) => t.id !== transaction.id));
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingTransaction(null);
   };
-  const filteredTransactions = transactions.filter((transaction) => {
-    const desc = (transaction.description || "").toString().toLowerCase();
+  const filteredTransactions = transactions.filter((transaction) => {//This creates a new array containing only the transactions that match the user's search and filter choices.
+    const desc = (transaction.description || "").toString().toLowerCase();//If description doesn't exist,use an empty string instead.This avoids errors.
     const matchesSearch = desc.includes(searchTerm.toLowerCase());
     const matchesCategory =
       SelectedCategory === "All categories" ||
@@ -63,13 +63,13 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
 
   const sortedTransactions = [...filteredTransactions].sort((a, b) => {
     if (sortBy === "Date") {
-      return new Date(b.date) - new Date(a.date);
+      return new Date(b.date) - new Date(a.date);//Newest dates appear first.
     } else if (sortBy === "Amount") {
       return b.amount - a.amount; // Sort by amount descending
     }
     return 0;
   });
-  return (
+  return (//rendeing
     <div className="transactions-page">
       <div className="transactions-header">
         <div>
@@ -118,8 +118,8 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
       </div>
 
       <div className="transaction-card">
-        <TransactionList
-          transactions={sortedTransactions}
+        <TransactionList   //When the user clicks a button in a row, those functions are called.
+          transactions={sortedTransactions} //it displays the filtered and sorted results.
           onEdit={handleEdit}
           onDelete={handleDelete}
         />
@@ -132,7 +132,7 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
               transactions={transactions}
               setTransactions={setTransactions}
               onClose={handleCloseModal}
-              editingTransaction={editingTransaction}
+              editingTransaction={editingTransaction}//null → create a new transaction.
             />
           </div>
         </div>
@@ -141,3 +141,4 @@ function Transactions({ transactions = mockTransactions, setTransactions }) {
   );
 }
 export default Transactions;
+//stopPropagation prevents the click event from bubbling up to the overlay.
